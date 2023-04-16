@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color:  #dfecf1">
+
+            <p:layout fullPage="true" style="background-color:  #dfecf1">
+
+                <p:layoutUnit position="north" size="100" collapsible="true" style="background-color:  #dfecf1">
+                    <div class="but" >
+                        <h2>
+                            <h:outputText value="MEDECIN MANAGEMENT"/>
+                        </h2>
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="MENU" collapsible="true" style="background-color:  #dfecf1">
+                    <p:menu class="left" >
+                        <p:submenu>
+                            <p:menuitem style="margin-top: 40px: " value="Client" url="http://localhost:8080/WebApplication_hibernate/pageclient/creerClient.xhtml" />
+                            <p:menuitem value="Medecin" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Rv" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Creneaux" url="http://www.primefaces.org/themes.html" />
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" style="background-color: buttonface">
+                    <center style="color: blue">
+                        <h2 style="margin-bottom: 0px">Liste des client</h2>
+                    </center>
+
+                    <p:commandButton  action="/creerClient" style="margin-bottom: 10px" value="Creer nouveaux client"/>
+
+
+                    <h:form id="formMostre">
+                        <p:dataTable var="per" value="#{clientBean.clients}"
+                                     emptyMessage="No hay registros" paginator="true"
+                                     rows="8" paginatorPosition="top"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                     {PreviousPageLink} {PageLinks} {NextPageLink}
+                                     {RowsPerPageDropdown}">
+                            <p:column headerText="Nom du client">
+                                <h:outputText value="#{per.nom}"/>
+                            </p:column>
+                            <p:column headerText="Prenom du client">
+                                <h:outputText value="#{per.prenom}"/>
+                            </p:column>
+                            <p:column headerText="Titre de client">
+                                <h:outputText value="#{per.titre}"/>
+                            </p:column>
+                            <p:column headerText="Action">
+                                <p:commandButton value="Update" onclick="PF('dlgmodificar').show()"
+                                                 update=":formModifier">
+                                    <f:setPropertyActionListener target="#{clientBean.client}" value="#{per}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="Action">  
+                                <p:commandButton value="Delet" onclick="PF('dlgeliminar').show();">
+                                    <f:setPropertyActionListener target="#{clientBean.client}" value="#{per}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+                </p:layoutUnit>
+
+            </p:layout>
+            <p:dialog id="dlg" header="Modificaton du client" showEffect="explode" hideEffect="bounce" 
+                      widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200">
+                <h:form id="formModifier">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Nom du client"/>
+                        <p:inputText value="#{clientBean.client.nom}"/>
+                        <p:outputLabel value="Prenom du client"/>
+                        <p:inputText value="#{clientBean.client.prenom}"/>
+                        <p:outputLabel value="Titre du client"/>
+                        <p:inputText value="#{clientBean.client.titre}"/>
+                    </p:panelGrid>
+                    <p:growl id='growl' life='1000'/>
+                    <p:commandButton actionListener='#{clientBean.update()}' value='Update'
+                                     update=':formMostre' onclick="PF('dlgmodificar').hide();"/>
+                </h:form>      
+            </p:dialog>
+            <p:dialog id="dlg2" header="suppreton du client" showEffect="explode" hideEffect="bounce" 
+                      widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
+                <h:form id="formDelet">
+                    <p:outputLabel value="vouler vous vraiment supprimer"/>
+                    <p:growl id='growl' life='1000'/>
+                    <p:commandButton actionListener='#{clientBean.delet()}' value='Oui' 
+                                     update=':formMostre' onclick="PF('dlgeliminar').hide();"/>
+                    <p:commandButton  value='Nom' onclick="PF('dlg2').hide();"/>
+                </h:form>
+            </p:dialog>
+        </h:body>
+
+    </f:view>
+</html>
+

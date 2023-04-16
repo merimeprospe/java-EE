@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/main.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <title>GEC Medecin</title>
+    </h:head>
+
+    <h:body style="background-color:  #f5f5f9">
+
+
+        <div id="top" class="top" style="background-color:  #f5f5f9">
+            <div class="but" style="display: flex"> 
+                <a href="http://localhost:8080/WebApplication_hibernate/index.xhtml" class="ah" > 
+                    <h:graphicImage  style="margin-right: 23px" value="Images/icon.jpeg" alt="The image could not be display" width="100" height="50" />
+                    <h2>
+                        <h:outputText class="titre" value="MEDECIN MANAGE"/>
+                    </h2>
+                </a>
+                <h:form id="rech"> 
+                    <p:inputText type="text" class="rech" value="#{clientBean.rech}"/>
+                    <p:commandButton update=':formMostre' class="fa fa-search bot" value="" style="color: #6699ff ">
+                    </p:commandButton>
+                </h:form>     
+            </div>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left"><h:form> 
+
+                        <center>
+                            <h:commandButton action = "/pageclient/indexClient?faces-redirect=true"  
+                                             value="Client" class="menu">
+                            </h:commandButton></center> 
+                        <center><h:commandButton action = "/pageCreneaux/indexCreneaux.xhtml?faces-redirect=true"   
+                                                 value="Creneaux" class="menu"></h:commandButton></center>
+                        <center><h:commandButton action = "/pageRv/IndexRv.xhtml?faces-redirect=true"   
+                                                 value="RV" class="menu"></h:commandButton></center>
+                        <center><h:commandButton action = "/pageMedecin/indexMedecin.xhtml?faces-redirect=true"   
+                                                 value="Medecin" class="menu"></h:commandButton></center>              
+                    </h:form></ui:insert>
+
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">
+                    <h:form id="formMostre"> 
+                        <center>  
+                            <h2><h:outputText value="LISTE DES CLIENT" style="color: #007bff"/></h2>  
+                        </center>  
+                        <h:commandButton action = "creerClient.xhtml?faces-redirect=true"   
+                                         value="Create Client" class="btn btnc btn-success" >
+                        </h:commandButton>
+                        <p:dataTable var="per" value="#{clientBean.clients}"
+                                     emptyMessage="No hay registros" paginator="true"
+                                     rows="9" paginatorPosition="top"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                     {PreviousPageLink} {PageLinks} {NextPageLink}
+                                     {RowsPerPageDropdown}"
+                                     class="table table-striped table-hover table-bordered tabl">
+                            <p:column headerText="Nom du client">
+                                <h:outputText value="#{per.nom}"/>
+                            </p:column>
+                            <p:column headerText="Prenom du client">
+                                <h:outputText value="#{per.prenom}"/>
+                            </p:column>
+                            <p:column headerText="Titre de client">
+                                <h:outputText value="#{per.titre}"/>
+                            </p:column>
+                            <p:column headerText="Action">
+                                <p:commandButton  onclick="PF('dlgmodificar').show()"
+                                                 update=":formModifier" style="background-color: #ccffcc "
+                                                 icon="ui-icon-pencil">
+                                    <f:setPropertyActionListener target="#{clientBean.client}" value="#{per}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="Action">  
+                                <p:commandButton  onclick="PF('dlgeliminar').show();" style="background-color: #ffcccc" 
+                                                 icon="ui-icon-trash">
+                                    <f:setPropertyActionListener target="#{clientBean.client}" value="#{per}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>  
+                </ui:insert>
+            </div>
+        </div>
+        <p:dialog id="dlg" header="Modificaton du client" showEffect="explode" hideEffect="bounce" 
+                  widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200">
+            <h:form id="formModifier">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nom du client"/>
+                    <p:inputText value="#{clientBean.client.nom}"/>
+                    <p:outputLabel value="Prenom du client"/>
+                    <p:inputText value="#{clientBean.client.prenom}"/>
+                    <p:outputLabel value="Titre du client"/>
+                    <p:inputText value="#{clientBean.client.titre}"/>
+                </p:panelGrid>
+                <p:growl id='growl' life='1000'/>
+                <p:commandButton actionListener='#{clientBean.update()}' value='Update'
+                                 update=':formMostre' onclick="PF('dlgmodificar').hide();"/>
+            </h:form>      
+        </p:dialog>
+
+        <p:dialog id="dlg2" header="suppreton du client" showEffect="explode" hideEffect="bounce" 
+                  widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
+            <h:form id="formDelet">
+                <p:outputLabel value="vouler vous vraiment supprimer"/>
+                <br/>
+                <p:growl id='growl' life='1000'/>
+                <p:commandButton actionListener='#{clientBean.delet()}' value='Oui' 
+                                 update=':formMostre' onclick="PF('dlgeliminar').hide();" style="margin: 14px 25px"/>
+                <p:commandButton  value='Nom' onclick="PF('dlg2').hide();"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog id="dlg3" header="Recherche client" showEffect="explode" hideEffect="bounce" 
+                  widgetVar="listerech" modal="true" resizable="false" minWidth="200">
+            <p:dataTable var="per" value="#{clientBean.rechclients}"
+                         emptyMessage="No hay registros" paginator="true"
+                         rows="9" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                         {PreviousPageLink} {PageLinks} {NextPageLink}
+                         {RowsPerPageDropdown}"
+                         class="table table-striped table-hover table-bordered tabl1">
+                <p:column headerText="Nom du client">
+                    <h:outputText value="#{per.nom}"/>
+                </p:column>
+                <p:column headerText="Prenom du client">
+                    <h:outputText value="#{per.prenom}"/>
+                </p:column>
+                <p:column headerText="Titre de client">
+                    <h:outputText value="#{per.titre}"/>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+    </h:body>
+
+</html>

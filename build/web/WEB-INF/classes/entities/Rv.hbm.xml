@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-mars-2023 15:30:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Rv" table="rv" catalog="bd_medecin" optimistic-lock="version">
+        <id name="idRv" type="java.lang.Integer">
+            <column name="id_rv" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="client" class="entities.Client" fetch="select">
+            <column name="id_client" not-null="true" />
+        </many-to-one>
+        <many-to-one name="creneaux" class="entities.Creneaux" fetch="select">
+            <column name="id_creneau" not-null="true" />
+        </many-to-one>
+        <property name="jour" type="date">
+            <column name="jour" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

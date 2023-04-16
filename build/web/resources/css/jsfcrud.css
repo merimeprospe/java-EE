@@ -1,0 +1,343 @@
+root { 
+    display: block;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3a4f54;
+    background-color:  #dfecf1;
+    font-size: small;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.delet{
+    width: 100%;
+    padding: 500px;
+}
+
+
+form.jsfcrud_list_form th, td th {
+    font-size: 15px;
+    color: #4e6a71;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #b2d5d6;
+    border-bottom-color: #b2d5d6;
+    border-left-color: #90b4bd;
+    border-right-color: #90b4bd;
+    letter-spacing: 3px;
+    text-align: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: #b2d5d6;
+}
+
+td {
+    vertical-align: top;
+    padding: 0.7rem;
+    font-size: 15px;
+}
+
+.left{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;    
+    margin: 0rem;
+    text-align: center;
+    background-color: #dfecf1; 
+}
+
+.form1{
+    text-align: center;
+}
+.inpu{
+    text-align: center;
+    width: 70%;
+    height: 50%;
+}
+form.jsfcrud_list_form td, td td {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #b2d5d6;
+    border-bottom-color: #b2d5d6;
+    border-left-color: #b2d5d6;
+    border-right-color: #b2d5d6;
+    vertical-align: baseline;
+}
+
+tr.jsfcrud_odd_row {
+    background-color: #fefeff;
+    color: #4e6a71;
+}
+
+
+tr.jsfcrud_even_row {
+    background-color: #eff5fa;
+    color: #4e6a71;
+}
+
+#busyImage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.btnc{
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    background-color:  #6699ff;
+    color: #fff;
+    background-color: #6699ff;
+    border-color: #6699ff;
+    height: 40px;
+    FONT-WEIGHT: 500;
+    border-radius: 5px;
+    width: 125px;
+    margin-top: 0px;
+        
+}
+
+.ui-button-text-only .ui-button-text {
+    padding: .3em 1em;
+    background-color: #6699ff4d;
+}
+
+.ui-panel .ui-panel-titlebar {
+    padding: 0.5em 1em 0.3em;
+    background-color: #6699ff4d;
+}
+
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+    padding: 2px;
+    background-color: #6699ff4d;
+}
+
+#client {
+    border: 1px solid #a8a8a8;
+    background: #ffffff;
+    color: #4f4f4f;
+    background-color: #6699ff4d;
+}
+
+.ui-panelgrid {
+    border-collapse: collapse;
+    margin-top: 10%;
+    margin-bottom: 30px;
+    width: 75%;
+    height: 220px;
+}
+
+.form{
+    box-shadow: 0px 4px 4px 9px  #E8EDF6;
+    width: 65%;
+    margin-top: 30px;
+    display: flow-root;
+    height: 450px;
+}
+
+.ui-panel {
+    padding: 0.2em;
+    background-color: #F6F9FF;
+    height: 450px;
+    border: 0,5rem;
+}
+
+.titr{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: 13px;
+    color: #3826076b;;
+}
+.note{
+    font-size: 60px;
+    margin-top: 5px;
+    margin-left: 13px;
+    color: #f9730082;
+}
+
+.abt{
+    margin: 30px;
+    border-left: 2px;
+    border-radius: 6px;
+    background-color: white;
+    height: 140px;
+    width: 240px;
+    box-shadow: 0px 4px 4px 7px  #E8EDF6;
+}
+.abt3{
+    margin: 30px;
+    border-left: 2px;
+    border-radius: 6px;
+    background-color: #ced35bb3;
+    height: 140px;
+    width: 240px;
+    box-shadow: 0px 4px 4px 7px  #6699ff4d;
+}
+.abt2{
+    margin: 30px;
+    border-left: 2px;
+    border-radius: 6px;
+    background-color: #ccffff;
+    height: 140px;
+    width: 240px;
+    box-shadow: 0px 4px 4px 7px  #6699ff4d;
+}
+.abt1{
+    margin: 30px;
+    border-left: 2px;
+    border-radius: 6px;
+    background-color: #f57474a6;
+    height: 140px;
+    width: 240px;
+    box-shadow: 0px 4px 4px 7px  #6699ff4d;
+}
+
+.ah{
+    display: flex;
+    margin-right: 110px;
+}
+
+.tabl{
+    margin-top: 63px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #6699ff;   
+}
+.tabl1{
+    margin-top: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #6699ff;   
+}
+
+.rech{
+    margin-left: 120px;
+    height: 40px;
+    width: 380px;
+    margin-top: 7px;
+    border-radius: 1rem;
+    border-color: #6699ff;
+    
+}
+
+.menu{
+   background-color:  #6699ff;
+   color: #fff;
+   background-color: #6699ff;
+   border-color: #6699ff;
+   height: 40px;
+   FONT-WEIGHT: 500;
+   border-radius: 5px;
+   width: 125px;
+   margin-top: 50px;
+}
+
+.titre{
+    font-size: 24px;
+    margin-top: 20px; 
+    color: #6699ff;
+}
+
+.bot{
+    height: 61px;
+    width: 41px;
+    margin-left: 35px;
+    border: none;
+    background-color: white;
+}
+
+.but{
+    box-shadow: none;
+    background: #ffffff;
+    border-radius: 1rem;
+    opacity: 1;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;    
+    margin: 0rem;
+}
+
+.but2{
+    box-shadow: none;
+    background: violet;
+    border-radius: 1.2rem;
+    opacity: 1;
+    
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding-left: 31rem;
+    padding-right: 31rem;
+}
+
+.destroy{
+    background-color: orangered;
+}
+
+.save{
+    background-color: green;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+.dest{
+    background-color: orangered;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+.view{
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.formcard{
+    border-width: 1px;
+    border-style: solid;
+    border-color: appworkspace;
+    padding: 1.5rem;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    background-color: honeydew;
+}

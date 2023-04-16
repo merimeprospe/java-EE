@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-mars-2023 15:30:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Medecin" table="medecin" catalog="bd_medecin" optimistic-lock="version">
+        <id name="idMedecin" type="java.lang.Integer">
+            <column name="id_medecin" />
+            <generator class="identity" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="100" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="100" />
+        </property>
+        <property name="titre" type="string">
+            <column name="titre" length="100" />
+        </property>
+        <set name="creneauxes" table="creneaux" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_medecin" not-null="true" />
+            </key>
+            <one-to-many class="entities.Creneaux" />
+        </set>
+    </class>
+</hibernate-mapping>
